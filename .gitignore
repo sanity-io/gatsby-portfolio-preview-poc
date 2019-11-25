@@ -6,3 +6,7 @@
 
 # lerna files
 /lerna-debug.log
+
+# lock files
+studio/yarn.lock
+studio/package-lock.json
