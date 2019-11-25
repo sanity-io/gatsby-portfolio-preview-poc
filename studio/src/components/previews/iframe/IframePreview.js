@@ -11,11 +11,7 @@ class IframePreview extends React.PureComponent {
   }
 
   static defaultProps = {
-    url: ''
-  }
-
-  state = {
-    error: null
+    document: null
   }
 
   render() {
