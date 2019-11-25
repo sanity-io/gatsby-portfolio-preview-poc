@@ -36,12 +36,17 @@ export default {
         data: [
           {
             title: 'GitHub repo',
-            value: 'https://github.com/thomax/gatsby-portfolio-preview-poc',
+            value: 'https://github.com/sanity-io/gatsby-portfolio-preview-poc',
             category: 'Code'
           },
           {
-            title: 'Frontend',
+            title: 'Netlify Frontend',
             value: 'https://gatsby-portfolio-preview-poc.netlify.com',
+            category: 'apps'
+          },
+          {
+            title: 'Gatsby Preview Frontend',
+            value: 'https://gatsby-portfolio-preview-poc-1812761745.gtsb.io',
             category: 'apps'
           }
         ]

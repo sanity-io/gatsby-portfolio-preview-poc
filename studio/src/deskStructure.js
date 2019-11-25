@@ -1,5 +1,9 @@
 import S from '@sanity/desk-tool/structure-builder'
 import MdSettings from 'react-icons/lib/md/settings'
+import EyeIcon from 'part:@sanity/base/eye-icon'
+import EditIcon from 'part:@sanity/base/edit-icon'
+
+import IframePreview from './components/previews/iframe/IframePreview'
 
 const hiddenDocTypes = listItem =>
   !['category', 'person', 'sampleProject', 'siteSettings'].includes(listItem.getId())
@@ -20,7 +24,22 @@ export default () =>
       S.listItem()
         .title('Sample projects')
         .schemaType('sampleProject')
-        .child(S.documentTypeList('sampleProject').title('Sample projects')),
+        .child(
+          S.documentTypeList('sampleProject')
+            .title('Sample projects')
+            .child(documentId =>
+              S.document()
+                .documentId(documentId)
+                .schemaType('sampleProject')
+                .views([
+                  S.view.form().icon(EditIcon),
+                  S.view
+                    .component(IframePreview)
+                    .icon(EyeIcon)
+                    .title('Web Preview')
+                ])
+            )
+        ),
       S.listItem()
         .title('People')
         .schemaType('person')
