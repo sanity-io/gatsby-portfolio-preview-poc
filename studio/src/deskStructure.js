@@ -4,6 +4,7 @@ import EyeIcon from 'part:@sanity/base/eye-icon'
 import EditIcon from 'part:@sanity/base/edit-icon'
 
 import IframePreview from './components/previews/iframe/IframePreview'
+import ColorblindPreview from './components/previews/a11y/colorblind-filter/ColorblindPreview'
 
 const hiddenDocTypes = listItem =>
   !['category', 'person', 'sampleProject', 'siteSettings'].includes(listItem.getId())
@@ -36,7 +37,11 @@ export default () =>
                   S.view
                     .component(IframePreview)
                     .icon(EyeIcon)
-                    .title('Web Preview')
+                    .title('Web Preview'),
+                  S.view
+                    .component(ColorblindPreview)
+                    .icon(EyeIcon)
+                    .title('Colorblind')
                 ])
             )
         ),
