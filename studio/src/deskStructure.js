@@ -5,6 +5,7 @@ import EditIcon from 'part:@sanity/base/edit-icon'
 
 import IframePreview from './components/previews/iframe/IframePreview'
 import ColorblindPreview from './components/previews/a11y/colorblind-filter/ColorblindPreview'
+import TextToSpeechPreview from './components/previews/a11y/text-to-speech/TextToSpeechPreview'
 
 const hiddenDocTypes = listItem =>
   !['category', 'person', 'sampleProject', 'siteSettings'].includes(listItem.getId())
@@ -41,7 +42,11 @@ export default () =>
                   S.view
                     .component(ColorblindPreview)
                     .icon(EyeIcon)
-                    .title('Colorblind')
+                    .title('Colorblind'),
+                  S.view
+                    .component(TextToSpeechPreview)
+                    .icon(EyeIcon)
+                    .title('Text to speech')
                 ])
             )
         ),
