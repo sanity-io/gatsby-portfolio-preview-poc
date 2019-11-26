@@ -5,7 +5,7 @@ import DefaultButton from 'part:@sanity/components/buttons/default'
 import {blocksToText} from '../../utils'
 import styles from './TextToSpeechPreview.css'
 
-const utterableFields = ['title', 'excerpt', 'body']
+const defaultFields = ['title', 'excerpt', 'body']
 const speechOptions = {rate: 0.9, pitch: 1, lang: 'en-US'}
 
 let speechSynth = null
@@ -17,11 +17,13 @@ if ('speechSynthesis' in window) {
 // eslint-disable-next-line react/require-optimization
 class TextToSpeechPreview extends React.Component {
   static propTypes = {
-    document: PropTypes.object
+    document: PropTypes.object,
+    fields: PropTypes.array
   }
 
   static defaultProps = {
-    document: null
+    document: null,
+    fields: null
   }
 
   state = {
@@ -30,8 +32,9 @@ class TextToSpeechPreview extends React.Component {
 
   // Only offer to speak fields which have any data
   fieldsAvailableForUtterance = () => {
+    const {fields} = this.props
     const {displayed} = this.props.document
-    return utterableFields.filter(field => !!displayed[field])
+    return (fields || defaultFields).filter(field => !!displayed[field])
   }
 
   textToSpeak() {
@@ -89,7 +92,10 @@ class TextToSpeechPreview extends React.Component {
     }
 
     const {activeField} = this.state
+
+    // DefaultSelect wants objects, let's make some of those
     const fieldObjects = this.fieldsAvailableForUtterance().map(field => ({title: field}))
+    const activeFieldObject = fieldObjects.find(obj => obj.title === activeField)
 
     if (fieldObjects) {
       return (
@@ -97,7 +103,7 @@ class TextToSpeechPreview extends React.Component {
           <div className={styles.selectionWrapper}>
             <DefaultSelect
               items={fieldObjects}
-              value={{title: activeField}}
+              value={activeFieldObject}
               onChange={this.handleFieldChange}
             />
             <DefaultButton color={'primary'} onClick={() => this.handleStartSpeaking()}>
