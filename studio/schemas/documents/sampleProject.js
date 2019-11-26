@@ -68,6 +68,11 @@ export default {
       title: 'Related projects',
       type: 'array',
       of: [{type: 'reference', to: {type: 'sampleProject'}}]
+    },
+    {
+      name: 'relatedUrl',
+      title: 'Related URL',
+      type: 'urlWithMetadata'
     }
   ],
   preview: {
