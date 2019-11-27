@@ -2,7 +2,6 @@ import React from 'react'
 import PropTypes from 'prop-types'
 import DefaultSelect from 'part:@sanity/components/selects/default'
 import DefaultButton from 'part:@sanity/components/buttons/default'
-import {blocksToText} from '../../utils'
 import styles from './TextToSpeechPreview.css'
 
 const defaultFields = ['title', 'excerpt', 'body']
@@ -12,6 +11,19 @@ let speechSynth = null
 
 if ('speechSynthesis' in window) {
   speechSynth = window.speechSynthesis
+}
+
+const blocksToText = (blocks, opts = {}) => {
+  const defaultBehaviors = {nonTextBehavior: 'remove'}
+  const options = Object.assign({}, defaultBehaviors, opts)
+  return blocks
+    .map(block => {
+      if (block._type !== 'block' || !block.children) {
+        return options.nonTextBehavior === 'remove' ? '' : `[${block._type} block]`
+      }
+      return block.children.map(child => child.text).join('')
+    })
+    .join('\n\n')
 }
 
 // eslint-disable-next-line react/require-optimization

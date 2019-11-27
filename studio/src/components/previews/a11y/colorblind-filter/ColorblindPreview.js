@@ -4,7 +4,6 @@ import PropTypes from 'prop-types'
 import DefaultSelect from 'part:@sanity/components/selects/default'
 import filters from './filters.svg'
 import styles from './ColorblindPreview.css'
-import {assembleProjectUrl} from '../../utils'
 
 const FILTER_ITEMS = [
   {title: 'Protanopia', value: 'protanopia'},
@@ -17,6 +16,12 @@ const FILTER_ITEMS = [
   {title: 'Achromatomaly', value: 'achromatomaly'},
   {title: 'No filter', value: null}
 ]
+
+const gatsbyUrl = 'https://gatsby-portfolio-preview-poc-1812761745.gtsb.io'
+
+export const assembleProjectUrl = doc => {
+  return `${gatsbyUrl}/project/${doc.slug.current}`
+}
 
 class ColorblindPreview extends React.PureComponent {
   static propTypes = {
