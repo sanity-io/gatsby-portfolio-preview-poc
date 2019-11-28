@@ -1,1 +1,100 @@
-# gatsby-portfolio-preview-poc-studio
+# Gatsby Portfolio Studio with sample previews
+
+This is a Sample Studio which showcases a few interesting ways to preview your content. The Studio itself is based off the [Portfolio with Gatsby](https://www.sanity.io/create/?template=sanity-io%2Fsanity-template-gatsby-portfolio) template.
+
+## Try it out
+
+There are three ways of quickly getting these previews running in a Studio of your own:
+
+1. Go to [this template](https://www.sanity.io/create/?template=sanity-io%2Fsanity-template-gatsby-portfolio) and get a fresh frontend + studio (including sample conent)
+2. Clone this Studio and change `projectId` and `dataset` in the `sanity.json` file to match a project of your own. Using this option you'll have to produce some content yourself to make any meaningful previews appear
+3. Manually copy the (src/components/previews) folder into your own Studio and wire them up as described below
+
+You'll need a web front-end capable of rendering your content.
+
+## Structure builder config
+
+For these previews to work, your Studio needs a Structure Builder config. Locate a file named `deskStrcuture.js`. If there isn't one, follow [these instructions](https://www.sanity.io/docs/how-it-works) first. On the off-chance that there is a SB config in your Studio, but it's named differently, check your `sanity.json` file for the implementation of `part:@sanity/desk-tool/structure`.
+
+Now, instead of something like this in your `deskStrcuture.js` file:
+
+```js
+S.listItem()
+  .title('Sample projects')
+  .schemaType('sampleProject')
+  .child(
+    S.documentTypeList('sampleProject')
+      .title('Sample projects')
+  )
+```
+
+...you want to take a bit more control by calling `.views()`:
+
+```js
+S.listItem()
+  .title('Sample projects')
+  .schemaType('sampleProject')
+  .child(
+    S.documentTypeList('sampleProject')
+      .title('Sample projects')
+      .child(documentId =>
+        S.document()
+          .documentId(documentId)
+          .schemaType('sampleProject')
+          .views([
+            S.view.form().icon(EditIcon),
+            S.view
+              .component(IframePreview)
+              .icon(EyeIcon)
+              .title('Web Preview')
+          ])
+      )
+  )
+```
+
+In short, what we're saying here is, "yeah we want a view to edit documents of the type `person` (`S.view.form`). And we want _another_ custom view component (`S.view.component`) which we're going to use as preview.
+
+For the above code to work, you'll need to import the IframePreview component and those icons into your `deskStructure.js`:
+
+```js
+import EyeIcon from 'part:@sanity/base/eye-icon'
+import EditIcon from 'part:@sanity/base/edit-icon'
+import IframePreview from './components/previews/iframe/IframePreview'
+```
+
+## Preview components and usage
+
+### Wiring up Gatsby Preview
+
+For the iFrame and Colorblind previews to work, you need to put your web front end on the Gatsby Cloud. Sign up at https://www.gatsbyjs.com/preview/. If you got your Studio + front-end from sanity.io/create, give Gastby your GitHub repo URL and make sure you set the base directory to `web`.
+
+Also, set these three environment variables:
+- `GATSBY_SANITY_PROJECT_ID` - The Sanity project ID
+- `GATSBY_SANITY_DATASET` - The name of your dataset
+- `SANITY_READ_TOKEN` - A token which will allow the Gatsby builder to fetch content. Visit [manage.sanity.io](https://manage.sanity.io) to generate such a token
+
+### iFrame preview of live site
+
+This component receives a `sampleProject` document, resolves the URL to the web front-end and renders an iFrame of that page inside the Studio.
+
+In addition to content being available in your dataset, you'll have to take control of the `gatsbyUrl` constant and possible the `assembleProjectUrl`. Both of these are located in the `IframePreview.js` file.
+
+### Colorblind preview of live site
+
+This component does exactly the same as the iFrame preview, but in addition it let's you select a filter which optimizes the experience for users with various colorblind conditions.
+
+### Text to Speech
+
+This component receives a `sampleProject` document and uses the browsers speech synthesizer to utter (read out loud) the text of various document fields. You can configure the target fields by setting the `fields` property, e.g.:
+
+```js
+S.view().component(({document}) => <TextToSpeechPreview document={document} fields={['title', 'description']} />)
+```
+
+Or you can take control of the `defaultFields` in `TextToSpeechPreview.js`. Also, the `speechOptions` in that same file can be fun to play around with :)
+
+
+## Cool! Do you have any other examples?
+
+Actually yes! Check this Studio out https://github.com/sanity-io/next-landingpages-preview-poc!
+
