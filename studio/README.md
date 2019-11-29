@@ -14,7 +14,7 @@ There are two ways of getting these previews running in a Studio:
 
 ### Manual
 
-Make yourself familiar with how the previews are defined in (deskStructure.js)[./src/deskStructure.js] and copy whichever preview components from (src/components/previews)[./src/components/previews] which you find intersting to your own Studio. Then modify them to make them fit your own content.
+Make yourself familiar with how the previews are defined in [deskStructure.js](./src/deskStructure.js) and copy whichever preview components from [src/components/previews](./src/components/previews) which you find intersting to your own Studio. Then modify them to make them fit your own content.
 
 
 ## Structure builder config
