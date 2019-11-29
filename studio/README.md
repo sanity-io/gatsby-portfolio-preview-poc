@@ -4,13 +4,18 @@ This is a Sample Studio which showcases a few interesting ways to preview your c
 
 ## Try it out
 
-There are three ways of quickly getting these previews running in a Studio of your own:
+There are two ways of getting these previews running in a Studio:
 
-1. Go to [this template](https://www.sanity.io/create/?template=sanity-io%2Fsanity-template-gatsby-portfolio) and get a fresh frontend + studio (including sample conent)
-2. Clone this Studio and change `projectId` and `dataset` in the `sanity.json` file to match a project of your own. Using this option you'll have to produce some content yourself to make any meaningful previews appear
-3. Manually copy the (src/components/previews) folder into your own Studio and wire them up as described below
+### Automatic
 
-You'll need a web front-end capable of rendering your content.
+1. Clone this Studio
+2. Change `projectId` and `dataset` in the `sanity.json` file to match a project you already own. If you want a new project to play with, get one by running `sanity init`.
+3. **Optional**: For easy testing, add sample content. There's some included in this repo, just type `sanity dataset import sample-data/production.tar.gz preview-test` in your terminal to get a new dataset tanked up. Remember to update your `sanity.json` file with dataset name `preview-test`.
+
+### Manual
+
+Make yourself familiar with how the previews are defined in (src/deskStructure.js)[deskStructure.js] and copy whichever preview components from (src/components/previews)[src/components/previews] which you find intersting to your own Studio. Then modify them to make them fit your own content.
+
 
 ## Structure builder config
 
