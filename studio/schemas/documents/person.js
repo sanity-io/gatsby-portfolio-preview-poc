@@ -27,6 +27,11 @@ export default {
       type: 'figure'
     },
     {
+      name: 'contactInfo',
+      type: 'contactInfo',
+      title: 'Contact information'
+    },
+    {
       name: 'bio',
       title: 'Bio',
       type: 'bioPortableText'

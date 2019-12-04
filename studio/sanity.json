@@ -1,11 +1,11 @@
 {
   "root": true,
+  "api": {
+    "projectId": "uj2a9mdf",
+    "dataset": "production"
+  },
   "project": {
     "name": "Gatsby Portfolio Preview POC"
-  },
-  "api": {
-    "projectId": "c038uh2a",
-    "dataset": "production"
   },
   "plugins": [
     "@sanity/base",

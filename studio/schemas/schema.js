@@ -14,6 +14,7 @@ import siteSettings from './documents/siteSettings'
 import bioPortableText from './objects/bioPortableText'
 import figure from './objects/figure'
 import projectMember from './objects/projectMember'
+import contactInfo from './objects/contactInfo'
 import projectPortableText from './objects/projectPortableText'
 import simplePortableText from './objects/simplePortableText'
 
@@ -31,6 +32,7 @@ export default createSchema({
     projectMember,
     projectPortableText,
     simplePortableText,
+    contactInfo,
     // The following are document types which will appear
     // in the studio.
     category,
