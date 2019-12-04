@@ -1,7 +1,7 @@
 /* eslint-disable react/no-multi-comp, react/no-did-mount-set-state, react/forbid-prop-types */
 import React from 'react'
 import PropTypes from 'prop-types'
-import {assemblePageUrl} from './frontendUtils'
+import {assemblePageUrl, toPlainText} from './frontendUtils'
 import Truncate from './Truncate'
 import styles from './GoogleSearchResult.css'
 
@@ -17,9 +17,9 @@ class GoogleSearchResult extends React.PureComponent {
     width: 500
   }
 
-  render() {
+  render () {
     const {document, route, width} = this.props
-    const {title, description} = document
+    const {title, excerpt, mainImage: openGraphImage} = document
     const url = assemblePageUrl(route)
 
     return (
@@ -30,9 +30,9 @@ class GoogleSearchResult extends React.PureComponent {
             {title}
           </Truncate>
           <div className={styles.url}>{url}</div>
-          <Truncate maxChars={300} className={styles.description}>
-            {description}
-          </Truncate>
+          {excerpt && <Truncate maxChars={300} className={styles.description}>
+            {toPlainText(excerpt)}
+          </Truncate>}
         </div>
       </div>
     )

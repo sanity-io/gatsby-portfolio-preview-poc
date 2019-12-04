@@ -19,8 +19,8 @@ class NewyorkBanner extends React.PureComponent {
     document: ''
   }
 
-  render() {
-    const {tagline, illustration} = this.props.document
+  render () {
+    const {title: tagline, mainImage: illustration} = this.props.document
     const imageUrl = urlFor(illustration)
       .width(500)
       .url()

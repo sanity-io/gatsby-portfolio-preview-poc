@@ -15,7 +15,7 @@ const NewyorkPreview = props => {
     return <div>No document to preview</div>
   }
   return (
-    <IrlPreview initialStyles={newyorkStyles} backgroundImage="/static/newyork.png">
+    <IrlPreview initialStyles={newyorkStyles} backgroundImage='/static/newyork.png'>
       <NewyorkBanner document={props.document.displayed} />
     </IrlPreview>
   )

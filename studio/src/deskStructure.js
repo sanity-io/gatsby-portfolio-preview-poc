@@ -7,6 +7,11 @@ import IframePreview from './components/previews/iframe/IframePreview'
 import ColorblindPreview from './components/previews/a11y/colorblind-filter/ColorblindPreview'
 import TextToSpeechPreview from './components/previews/a11y/text-to-speech/TextToSpeechPreview'
 
+import NewyorkPreview from './components/previews/banners/NewyorkPreview'
+import OsakaPreview from './components/previews/banners/OsakaPreview'
+import BusinessCard from './components/previews/pdf/BusinessCard'
+import SeoPreview from './components/previews/seo/SeoPreviews'
+
 const hiddenDocTypes = listItem =>
   !['category', 'person', 'sampleProject', 'siteSettings'].includes(listItem.getId())
 
@@ -46,8 +51,23 @@ export default () =>
                   S.view
                     .component(TextToSpeechPreview)
                     .icon(EyeIcon)
-                    .title('Text to speech')
+                    .title('Text to speech'),
+                  S.view
+                    .component(SeoPreview)
+                    .icon(EyeIcon)
+                    .title('SEO Preview'),
+                  S.view
+                    .component(NewyorkPreview)
+                    .icon(EyeIcon)
+                    .id('newyork')
+                    .title('New York'),
+                  S.view
+                    .component(OsakaPreview)
+                    .icon(EyeIcon)
+                    .id('osaka')
+                    .title('Osaka')
                 ])
+
             )
         ),
       S.listItem()

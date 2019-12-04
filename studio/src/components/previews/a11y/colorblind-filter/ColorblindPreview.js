@@ -17,7 +17,7 @@ const FILTER_ITEMS = [
   {title: 'No filter', value: null}
 ]
 
-const gatsbyUrl = 'https://gatsby-portfolio-preview-poc-1812761745.gtsb.io'
+const gatsbyUrl = window.location.hostname === 'localhost' ? 'http://localhost:8000' : 'https://gatsby-portfolio-preview-poc-1812761745.gtsb.io'
 
 export const assembleProjectUrl = doc => {
   return `${gatsbyUrl}/project/${doc.slug.current}`
@@ -40,7 +40,7 @@ class ColorblindPreview extends React.PureComponent {
     this.setState({activeFilter: filter})
   }
 
-  render() {
+  render () {
     const {displayed} = this.props.document
     if (!displayed) {
       return <div>there is no document to preview</div>

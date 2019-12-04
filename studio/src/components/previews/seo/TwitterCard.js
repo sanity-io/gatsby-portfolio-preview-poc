@@ -3,7 +3,7 @@ import React from 'react'
 import PropTypes from 'prop-types'
 import imageUrlBuilder from '@sanity/image-url'
 import sanityClient from 'part:@sanity/base/client'
-import {assemblePageUrl, websiteUrl} from './frontendUtils'
+import {assemblePageUrl, websiteUrl, toPlainText} from './frontendUtils'
 import styles from './TwitterCard.css'
 
 const builder = imageUrlBuilder(sanityClient)
@@ -30,9 +30,9 @@ class TwitterCard extends React.PureComponent {
     width: 500
   }
 
-  render() {
+  render () {
     const {document, route, width} = this.props
-    const {title, description, openGraphImage} = document
+    const {title, excerpt, mainImage} = document
     const url = assemblePageUrl(route)
     const websiteUrlWithoutProtocol = websiteUrl.split('://')[1]
     return (
@@ -46,8 +46,8 @@ class TwitterCard extends React.PureComponent {
                 src={
                   author && typeof author.image === 'object'
                     ? urlFor(author.image)
-                        .width(300)
-                        .url()
+                      .width(300)
+                      .url()
                     : author.image
                 }
               />
@@ -63,14 +63,14 @@ class TwitterCard extends React.PureComponent {
             <div className={styles.tweetCardPreview}>
               <div className={styles.tweetCardImage}>
                 <img
-                  src={urlFor(openGraphImage)
+                  src={urlFor(mainImage)
                     .width(300)
                     .url()}
                 />
               </div>
               <div className={styles.tweetCardContent}>
                 <h2 className={styles.tweetCardTitle}>{title}</h2>
-                <div className={styles.tweetCardDescription}>{description}</div>
+                {excerpt && <div className={styles.tweetCardDescription}>{toPlainText(excerpt)}</div>}
                 <div className={styles.tweetCardDestination}>{websiteUrlWithoutProtocol}</div>
               </div>
             </div>

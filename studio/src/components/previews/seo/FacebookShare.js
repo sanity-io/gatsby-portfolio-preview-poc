@@ -3,7 +3,7 @@ import React from 'react'
 import PropTypes from 'prop-types'
 import imageUrlBuilder from '@sanity/image-url'
 import sanityClient from 'part:@sanity/base/client'
-import {websiteUrl} from './frontendUtils'
+import {websiteUrl, toPlainText} from './frontendUtils'
 import styles from './FacebookShare.css'
 
 const builder = imageUrlBuilder(sanityClient)
@@ -23,9 +23,9 @@ class FacebookShare extends React.PureComponent {
     width: 500
   }
 
-  render() {
+  render () {
     const {document, width} = this.props
-    const {title, description, openGraphImage} = document
+    const {title, excerpt: description = [], mainImage: openGraphImage} = document
 
     const websiteUrlWithoutProtocol = websiteUrl.split('://')[1]
 
@@ -46,7 +46,7 @@ class FacebookShare extends React.PureComponent {
             <div className={styles.facebookCardTitle}>
               <a href={websiteUrl}>{title}</a>
             </div>
-            <div className={styles.facebookCardDescription}>{description}</div>
+            <div className={styles.facebookCardDescription}>{toPlainText(description)}</div>
           </div>
         </div>
       </div>

@@ -21,7 +21,7 @@ class SeoPreviews extends React.PureComponent {
     isLoading: true
   }
 
-  fetchPage(documentId) {
+  fetchPage (documentId) {
     sanityClient
       .fetch(`*[_id == $documentId][0]`, {
         documentId
@@ -30,12 +30,12 @@ class SeoPreviews extends React.PureComponent {
       .catch(error => this.setState({error, isLoading: false}))
   }
 
-  componentDidMount() {
+  componentDidMount () {
     const {displayed} = this.props.document
-    this.fetchPage(displayed.page._ref)
+    this.fetchPage(displayed._id)
   }
 
-  render() {
+  render () {
     const route = this.props.document.displayed
     const {matchingPage, isLoading, error} = this.state
 
@@ -49,7 +49,7 @@ class SeoPreviews extends React.PureComponent {
     }
 
     if (isLoading || !matchingPage) {
-      return <Spinner center message="Loading..." />
+      return <Spinner center message='Loading...' />
     }
 
     return (

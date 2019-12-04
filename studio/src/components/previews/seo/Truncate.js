@@ -4,7 +4,7 @@ import ReactDOM from 'react-dom'
 
 const ellipsis = '\u00A0…'
 
-function truncateWord(str) {
+function truncateWord (str) {
   return str.replace(/\s+\S+$/, '')
 }
 
@@ -24,7 +24,7 @@ export default class Truncate extends React.Component {
     truncatedChildren: this.props.children
   }
 
-  componentWillReceiveProps(nextProps) {
+  componentWillReceiveProps (nextProps) {
     if (
       this.props.children !== nextProps.children ||
       this.props.maxWidth !== nextProps.maxWidth ||
@@ -36,11 +36,11 @@ export default class Truncate extends React.Component {
     }
   }
 
-  componentDidMount() {
+  componentDidMount () {
     this.truncate()
   }
 
-  componentDidUpdate(prevProps) {
+  componentDidUpdate (prevProps) {
     if (
       this.props.children !== prevProps.children ||
       this.props.maxWidth !== prevProps.maxWidth ||
@@ -50,7 +50,7 @@ export default class Truncate extends React.Component {
     }
   }
 
-  truncate() {
+  truncate () {
     if (this.props.maxWidth) {
       this.truncateWidth()
     }
@@ -60,7 +60,7 @@ export default class Truncate extends React.Component {
     }
   }
 
-  truncateWidth() {
+  truncateWidth () {
     const node = ReactDOM.findDOMNode(this)
 
     if (node.scrollWidth > this.props.maxWidth) {
@@ -78,8 +78,8 @@ export default class Truncate extends React.Component {
     }
   }
 
-  truncateChars() {
-    if (this.props.children.length > this.props.maxChars) {
+  truncateChars () {
+    if ((this.props.children || []).length > this.props.maxChars) {
       let children = this.props.children
       while (
         (children + ellipsis).length > this.props.maxChars &&
@@ -94,7 +94,7 @@ export default class Truncate extends React.Component {
     }
   }
 
-  render() {
+  render () {
     const {maxWidth, maxChars, children, ...otherProps} = this.props
     const {truncatedChildren} = this.state
 
