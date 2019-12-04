@@ -1,0 +1,37 @@
+{
+  "name": "sanity-plugin-url-metadata-input",
+  "version": "1.0.0",
+  "description": "URL input for Sanity that retrieves metadata (title, description) along with OpenGraph information",
+  "main": "lib/UrlMetadataInput.js",
+  "author": "Sanity.io <hello@sanity.io>",
+  "license": "MIT",
+  "scripts": {
+    "watch": "babel src --copy-files --out-dir lib --watch",
+    "prepublishOnly": "npm run clean && babel src --copy-files --out-dir lib",
+    "clean": "rimraf lib"
+  },
+  "keywords": [
+    "sanity",
+    "sanity-plugin"
+  ],
+  "repository": {
+    "type": "git",
+    "url": "git@github.com:sanity-io/sanity-plugin-url-metadata-input.git"
+  },
+  "devDependencies": {
+    "babel-cli": "^6.20.0",
+    "babel-eslint": "^8.2.2",
+    "babel-plugin-syntax-class-properties": "^6.13.0",
+    "babel-plugin-transform-class-properties": "^6.24.1",
+    "babel-preset-env": "^1.6.1",
+    "babel-preset-react": "^6.24.1",
+    "eslint": "^4.18.1",
+    "eslint-config-sanity": "^4.0.2",
+    "eslint-plugin-import": "^2.9.0",
+    "eslint-plugin-react": "^7.7.0",
+    "prop-types": "^15.6.0",
+    "react": "^15.5.4",
+    "react-dom": "^15.5.4",
+    "rimraf": "^2.6.2"
+  }
+}

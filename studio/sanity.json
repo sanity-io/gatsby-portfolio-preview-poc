@@ -17,10 +17,9 @@
     "dashboard-widget-structure-menu",
     "dashboard-widget-document-list",
     "dashboard-widget-netlify",
-    "url-metadata-input"
+    "sanity-plugin-url-metadata-input"
   ],
-  "parts": [
-    {
+  "parts": [{
       "name": "part:@sanity/base/schema",
       "path": "./schemas/schema.js"
     },

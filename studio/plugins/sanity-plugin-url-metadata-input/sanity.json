@@ -1,0 +1,23 @@
+{
+  "parts": [{
+      "name": "part:url-metadata-input/input",
+      "path": "UrlMetadataInput.js"
+    },
+    {
+      "name": "part:url-metadata-input/schema",
+      "path": "schema.js"
+    },
+    {
+      "implements": "part:@sanity/base/schema-type",
+      "path": "meta.js"
+    },
+    {
+      "implements": "part:@sanity/base/schema-type",
+      "path": "openGraph.js"
+    },
+    {
+      "implements": "part:@sanity/base/schema-type",
+      "path": "urlWithMetadata.js"
+    }
+  ]
+}

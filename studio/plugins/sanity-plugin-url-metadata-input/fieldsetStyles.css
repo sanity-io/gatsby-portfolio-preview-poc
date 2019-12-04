@@ -1,0 +1,4 @@
+.root {
+  composes: root from 'part:@sanity/components/fieldsets/default-style';
+  margin-top: 0.5rem;
+}
