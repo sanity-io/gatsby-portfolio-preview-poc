@@ -73,7 +73,22 @@ export default () =>
       S.listItem()
         .title('People')
         .schemaType('person')
-        .child(S.documentTypeList('person').title('People')),
+        .child(
+          S.documentTypeList('person')
+            .title('People')
+            .child(documentId =>
+              S.document()
+                .documentId(documentId)
+                .schemaType('person')
+                .views([
+                  S.view.form().icon(EditIcon),
+                  S.view
+                    .component(BusinessCard)
+                    .icon(EyeIcon)
+                    .title('Business Card')
+                ])
+            )
+        ),
       S.listItem()
         .title('Categories')
         .schemaType('category')

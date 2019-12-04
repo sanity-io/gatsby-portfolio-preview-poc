@@ -16,47 +16,14 @@ class SeoPreviews extends React.PureComponent {
     document: null
   }
 
-  state = {
-    matchingPage: null,
-    isLoading: true
-  }
-
-  fetchPage (documentId) {
-    sanityClient
-      .fetch(`*[_id == $documentId][0]`, {
-        documentId
-      })
-      .then(matchingPage => this.setState({matchingPage, isLoading: false}))
-      .catch(error => this.setState({error, isLoading: false}))
-  }
-
-  componentDidMount () {
-    const {displayed} = this.props.document
-    this.fetchPage(displayed._id)
-  }
-
   render () {
-    const route = this.props.document.displayed
-    const {matchingPage, isLoading, error} = this.state
-
-    if (error) {
-      return (
-        <div>
-          <p>Ooops. Got an error while fetching preview :/</p>
-          <pre>{JSON.stringify(error, null, 2)}</pre>
-        </div>
-      )
-    }
-
-    if (isLoading || !matchingPage) {
-      return <Spinner center message='Loading...' />
-    }
+    const {displayed} = this.props.document
 
     return (
       <>
-        <TwitterCard document={matchingPage} route={route} />
-        <FacebookShare document={matchingPage} />
-        <GoogleSearchResult document={matchingPage} route={route} />
+        <TwitterCard document={displayed} route={displayed} />
+        <FacebookShare document={displayed} />
+        <GoogleSearchResult document={displayed} route={displayed} />
       </>
     )
   }

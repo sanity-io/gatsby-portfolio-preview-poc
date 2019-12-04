@@ -8,7 +8,7 @@ import styles from './BusinessCard.css'
 
 const fileType = 'png'
 const cardServiceHost = 'https://json-to-pdf.sanity-io.now.sh'
-//const cardServiceHost = 'http://localhost:3000'
+// const cardServiceHost = 'http://localhost:3000'
 const cardServiceBaseUrl = `${cardServiceHost}/api/business-card`
 
 const builder = imageUrlBuilder(sanityClient)
@@ -38,11 +38,11 @@ class BusinessCard extends React.PureComponent {
     error: null
   }
 
-  componentDidMount() {
+  componentDidMount () {
     this.fetchData()
   }
 
-  componentDidUpdate(prevProps, prevState) {
+  componentDidUpdate (prevProps, prevState) {
     const oldDoc = JSON.stringify(prevProps.document.displayed)
     const currentDoc = JSON.stringify(this.props.document.displayed)
     if (oldDoc !== currentDoc) {
@@ -52,11 +52,11 @@ class BusinessCard extends React.PureComponent {
 
   assembleCardServiceUrls = () => {
     const {displayed} = this.props.document
-    return sanityClient.fetch('*[_id == "global-config"][0]').then(siteConfig => {
+    return sanityClient.fetch('*[_id == "siteSettings"][0]{...,logo{...,asset->}}').then(siteConfig => {
       if (siteConfig.logo) {
         const siteLogoImageUrl = urlFor(siteConfig.logo)
-          .width(500)
-          .url()
+          .width(200).url()
+        debugger
         displayed.imageUrl = siteLogoImageUrl
       }
       const stringifiedDoc = JSON.stringify(displayed)
@@ -89,7 +89,7 @@ class BusinessCard extends React.PureComponent {
     })
   }
 
-  render() {
+  render () {
     const {displayed} = this.props.document
     const {businessCardImage, cardServiceUrls, isFlipped, error} = this.state
     const {name} = displayed
@@ -103,7 +103,7 @@ class BusinessCard extends React.PureComponent {
       )
     }
     if (!businessCardImage) {
-      return <Spinner center message="Fetching business card" />
+      return <Spinner center message='Fetching business card' />
     }
 
     return (
