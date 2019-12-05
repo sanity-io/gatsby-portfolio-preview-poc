@@ -1,6 +1,8 @@
 /* eslint-disable react/no-unused-prop-types, react/no-multi-comp, react/no-did-mount-set-state, react/forbid-prop-types */
 import React from 'react'
 import PropTypes from 'prop-types'
+import {of} from 'rxjs'
+import {map, switchMap, throttleTime} from 'rxjs/operators'
 import Spinner from 'part:@sanity/components/loading/spinner'
 import sanityClient from 'part:@sanity/base/client'
 import imageUrlBuilder from '@sanity/image-url'
@@ -8,7 +10,7 @@ import styles from './BusinessCard.css'
 
 const fileType = 'png'
 const cardServiceHost = 'https://json-to-pdf.sanity-io.now.sh'
-// const cardServiceHost = 'http://localhost:3000'
+//const cardServiceHost = 'http://localhost:3000'
 const cardServiceBaseUrl = `${cardServiceHost}/api/business-card`
 
 const builder = imageUrlBuilder(sanityClient)
@@ -38,11 +40,17 @@ class BusinessCard extends React.PureComponent {
     error: null
   }
 
-  componentDidMount () {
+  componentDidMount() {
     this.fetchData()
   }
 
-  componentDidUpdate (prevProps, prevState) {
+  componentWillUnmount() {
+    if (this.fetchSubscription) {
+      this.fetchSubscription.unsubscribe()
+    }
+  }
+
+  componentDidUpdate(prevProps) {
     const oldDoc = JSON.stringify(prevProps.document.displayed)
     const currentDoc = JSON.stringify(this.props.document.displayed)
     if (oldDoc !== currentDoc) {
@@ -52,44 +60,55 @@ class BusinessCard extends React.PureComponent {
 
   assembleCardServiceUrls = () => {
     const {displayed} = this.props.document
-    return sanityClient.fetch('*[_id == "siteSettings"][0]{...,logo{...,asset->}}').then(siteConfig => {
-      if (siteConfig.logo) {
-        const siteLogoImageUrl = urlFor(siteConfig.logo)
-          .width(200).url()
-        debugger
-        displayed.imageUrl = siteLogoImageUrl
-      }
-      const stringifiedDoc = JSON.stringify(displayed)
-      return {
-        png: `${cardServiceBaseUrl}?fileType=png&document=${stringifiedDoc}`,
-        pdf: `${cardServiceBaseUrl}?fileType=pdf&document=${stringifiedDoc}`
-      }
-    })
+    return sanityClient.observable.fetch('*[_id == "siteSettings"][0]').pipe(
+      map(siteConfig => {
+        const doc = {...displayed}
+        if (siteConfig.logo) {
+          const siteLogoImageUrl = urlFor(siteConfig.logo)
+            .width(500)
+            .url()
+          doc.imageUrl = siteLogoImageUrl
+        }
+        const stringifiedDoc = encodeURIComponent(JSON.stringify(doc))
+
+        return {
+          png: `${cardServiceBaseUrl}?fileType=png&document=${stringifiedDoc}`,
+          pdf: `${cardServiceBaseUrl}?fileType=pdf&document=${stringifiedDoc}`
+        }
+      })
+    )
   }
 
   fetchData = async () => {
-    const cardServiceUrls = await this.assembleCardServiceUrls()
-    try {
-      const response = await fetch(cardServiceUrls.png)
-      const arrayBuffer = await response.arrayBuffer()
-      const base64 = arrayBufferToBase64(arrayBuffer)
-      this.setState({
-        businessCardImage: `data:image/${fileType};base64,${base64}`,
-        cardServiceUrls
-      })
-    } catch (error) {
-      this.setState({error})
+    if (this.fetchSubscription) {
+      this.fetchSubscription.unsubscribe()
     }
+
+    console.log('fetchData')
+    this.fetchSubscription = of(null)
+      .pipe(
+        throttleTime(1000),
+        switchMap(() => this.assembleCardServiceUrls()),
+        switchMap(cardServiceUrls => {
+          this.setState({cardServiceUrls})
+          return fetch(cardServiceUrls.png)
+        }),
+        switchMap(response => response.arrayBuffer()),
+        map(arrayBuffer => `data:image/${fileType};base64,${arrayBufferToBase64(arrayBuffer)}`)
+      )
+      .subscribe({
+        next: businessCardImage => this.setState({businessCardImage}),
+        error: error => this.setState({error})
+      })
   }
 
   handleCardFlip = () => {
-    const flipped = this.state.isFlipped
-    this.setState({
-      isFlipped: !flipped
-    })
+    this.setState(({isFlipped}) => ({
+      isFlipped: !isFlipped
+    }))
   }
 
-  render () {
+  render() {
     const {displayed} = this.props.document
     const {businessCardImage, cardServiceUrls, isFlipped, error} = this.state
     const {name} = displayed
@@ -103,7 +122,7 @@ class BusinessCard extends React.PureComponent {
       )
     }
     if (!businessCardImage) {
-      return <Spinner center message='Fetching business card' />
+      return <Spinner center message="Fetching business card" />
     }
 
     return (
