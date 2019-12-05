@@ -100,6 +100,8 @@ S.view().component(({document}) => <TextToSpeechPreview document={document} fiel
 
 Or you can take control of the `defaultFields` in `TextToSpeechPreview.js`. Also, the `speechOptions` in that same file can be fun to play around with :)
 
+<img width="1280" alt="Screenshot 2019-12-05 21 58 12" src="https://user-images.githubusercontent.com/134077/70274035-4a302a00-17a3-11ea-9a19-c74fd565dac4.png">
+
 
 ## Cool! Do you have any other examples?
 
