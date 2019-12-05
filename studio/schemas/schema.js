@@ -16,6 +16,7 @@ import bioPortableText from './objects/bioPortableText'
 import figure from './objects/figure'
 import projectMember from './objects/projectMember'
 import contactInfo from './objects/contactInfo'
+import logo from './objects/logo'
 import projectPortableText from './objects/projectPortableText'
 import simplePortableText from './objects/simplePortableText'
 
@@ -31,6 +32,7 @@ export default createSchema({
     bioPortableText,
     figure,
     projectMember,
+    logo,
     projectPortableText,
     simplePortableText,
     contactInfo,
