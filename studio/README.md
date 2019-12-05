@@ -84,6 +84,8 @@ This component receives a `sampleProject` document, resolves the URL to the web 
 
 In addition to content being available in your dataset, you'll have to take control of the `gatsbyUrl` constant and possibly the `assembleProjectUrl`. Both of these are located in the `IframePreview.js` file.
 
+<img width="1281" alt="Screenshot 2019-12-05 21 53 42" src="https://user-images.githubusercontent.com/134077/70273965-2967d480-17a3-11ea-819d-2adb7d3801a6.png">
+
 ### Colorblind preview of live site
 
 This component does exactly the same as the iFrame preview, but in addition it let's you select a filter which optimizes the experience for users with various colorblind conditions.
@@ -97,6 +99,8 @@ S.view().component(({document}) => <TextToSpeechPreview document={document} fiel
 ```
 
 Or you can take control of the `defaultFields` in `TextToSpeechPreview.js`. Also, the `speechOptions` in that same file can be fun to play around with :)
+
+<img width="1280" alt="Screenshot 2019-12-05 21 58 12" src="https://user-images.githubusercontent.com/134077/70274035-4a302a00-17a3-11ea-9a19-c74fd565dac4.png">
 
 
 ## Cool! Do you have any other examples?
