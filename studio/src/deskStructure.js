@@ -8,6 +8,7 @@ import ColorblindPreview from './components/previews/a11y/colorblind-filter/Colo
 import TextToSpeechPreview from './components/previews/a11y/text-to-speech/TextToSpeechPreview'
 
 import NewyorkPreview from './components/previews/banners/NewyorkPreview'
+import MagazinePreview from './components/previews/banners/MagazinePreview'
 import OsakaPreview from './components/previews/banners/OsakaPreview'
 import BusinessCard from './components/previews/pdf/BusinessCard'
 import SeoPreview from './components/previews/seo/SeoPreviews'
@@ -91,6 +92,11 @@ export default () =>
                 .schemaType('ad')
                 .views([
                   S.view.form().icon(EditIcon),
+                  S.view
+                    .component(MagazinePreview)
+                    .icon(EyeIcon)
+                    .id('magazine')
+                    .title('Magazine'),
                   S.view
                     .component(NewyorkPreview)
                     .icon(EyeIcon)
