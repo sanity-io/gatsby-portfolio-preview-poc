@@ -3,7 +3,7 @@ import React from 'react'
 import PropTypes from 'prop-types'
 import styles from './IframePreview.css'
 
-const gatsbyUrl = window.location.hostname === 'localhost' ? 'http://localhost:8000' : 'https://gatsby-portfolio-preview-poc-1812761745.gtsb.io'
+const gatsbyUrl = window.location.hostname === 'localhost' ? 'http://localhost:8000' : 'https://gatsby-portfolio-preview-poc-4165823465.gtsb.io/'
 
 export const assembleProjectUrl = doc => {
   return `${gatsbyUrl}/project/${doc.slug.current}`
