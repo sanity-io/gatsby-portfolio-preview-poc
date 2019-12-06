@@ -197,7 +197,7 @@ class IrlPreview extends React.PureComponent {
             </div>
           </div>
         </div>
-        {{/* Commented out for marketing purposes */}}
+        {/* Commented out for marketing purposes */}
         {/* <div>
           <p>To save the position you have warped the ad into, replace the current <code>nmatrix</code> array in your preview component with this new <code>nmatrix</code> array:</p>
           <pre className={styles.nmatrix}>nmatrix = {JSON.stringify(nmatrix)}</pre>
