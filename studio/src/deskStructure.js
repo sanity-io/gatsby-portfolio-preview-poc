@@ -13,7 +13,7 @@ import BusinessCard from './components/previews/pdf/BusinessCard'
 import SeoPreview from './components/previews/seo/SeoPreviews'
 
 const hiddenDocTypes = listItem =>
-  !['category', 'person', 'sampleProject', 'siteSettings'].includes(listItem.getId())
+  !['category', 'person', 'sampleProject', 'siteSettings', 'ad'].includes(listItem.getId())
 
 export default () =>
   S.list()
@@ -55,17 +55,7 @@ export default () =>
                   S.view
                     .component(SeoPreview)
                     .icon(EyeIcon)
-                    .title('SEO Preview'),
-                  S.view
-                    .component(NewyorkPreview)
-                    .icon(EyeIcon)
-                    .id('newyork')
-                    .title('New York'),
-                  S.view
-                    .component(OsakaPreview)
-                    .icon(EyeIcon)
-                    .id('osaka')
-                    .title('Osaka')
+                    .title('SEO Preview')
                 ])
 
             )
@@ -86,6 +76,31 @@ export default () =>
                     .component(BusinessCard)
                     .icon(EyeIcon)
                     .title('Business Card')
+                ])
+            )
+        ),
+      S.listItem()
+        .title('Ads')
+        .schemaType('ad')
+        .child(
+          S.documentTypeList('ad')
+            .title('Ads')
+            .child(documentId =>
+              S.document()
+                .documentId(documentId)
+                .schemaType('ad')
+                .views([
+                  S.view.form().icon(EditIcon),
+                  S.view
+                    .component(NewyorkPreview)
+                    .icon(EyeIcon)
+                    .id('newyork')
+                    .title('New York'),
+                  S.view
+                    .component(OsakaPreview)
+                    .icon(EyeIcon)
+                    .id('osaka')
+                    .title('Osaka')
                 ])
             )
         ),

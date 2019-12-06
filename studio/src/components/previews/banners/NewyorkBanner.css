@@ -1,36 +1,38 @@
 @import url('https://fonts.googleapis.com/css?family=Lora&display=swap');
 
 .banner {
-  display: grid;
-  grid-template-columns: 1fr;
-  grid-template-rows: 1fr;
-  background: #ED3B32;
-  color: white;
-  font-size: 1.2rem;
-  width: 100%;
+  position: relative;
+  display: flex;
   height: 100%;
+  width: 100%;
   overflow: hidden;
+  box-sizing: border-box;
 }
 
-.imageWrapper {
-  grid-column: 1;
-  grid-row: 1;
+.backgroundImage {
+  position: absolute;
+  top: 0;
+  left: 0;
+  height: 100%;
+  width: 100%;
+  object-fit: cover;
 }
 
-.taglineWrapper {
-  z-index: 10;
-  grid-column: 1;
-  grid-row: 1;
-  max-width: 20ch;
-  padding: 1em 1.5em;
-  margin-top: auto;
+.content {
+  position: absolute;
+  bottom: 5%;
+  color: white;
+  opacity: 0.7;
+  padding: 1em;
+}
+
+.heading {
+  font-size: 1.2em;
+  text-transform: uppercase;
+  letterspacing: 1px;
+  line-height: 1;
 }
 
 .tagline {
-  font-family: 'Lora';
-  display: inline;
-  box-shadow: 10px 0 0 #ED3B32, -10px 0 0 #ED3B32;
-  background: #ED3B32;
-  font-weight: bold;
-  text-transform: lowercase;
+  font-size: 0.8em;
 }

@@ -1,21 +1,32 @@
-.componentWrapper {
+.root {
   padding: 1rem;
 }
 
 .previewWrapper {
   position: relative;
-  margin-top: 1rem;
-  max-width: 600px;
+  overflow: hidden;
 
   @nest & img {
     width: 100%;
   }
 
-  @nest & .banner {
+  @nest & .adWrapper {
     position: absolute;
     top: 0;
     left: 0;
   }
+}
+
+.adWrapper {
+  height: 100%;
+  width: 100%;
+}
+
+.nmatrix {
+  overflow-x: auto;
+  white-space: pre-wrap;
+  word-wrap: break-word;
+  margin-top: 0;
 }
 
 .radioWrapper {

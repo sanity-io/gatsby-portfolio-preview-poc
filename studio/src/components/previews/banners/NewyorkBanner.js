@@ -20,18 +20,17 @@ class NewyorkBanner extends React.PureComponent {
   }
 
   render () {
-    const {title: tagline, mainImage: illustration} = this.props.document
+    const {heading, tagline, illustration} = this.props.document
     const imageUrl = urlFor(illustration)
       .width(500)
       .url()
 
     return (
       <div className={styles.banner}>
-        <div className={styles.imageWrapper}>
-          <img className={styles.bannerImage} src={imageUrl} />
-        </div>
-        <div className={styles.taglineWrapper}>
-          <span className={styles.tagline}>{tagline}</span>
+        <img className={styles.backgroundImage} src={imageUrl} />
+        <div className={styles.content}>
+          <div className={styles.heading}>{heading}</div>
+          <div className={styles.tagline}>{tagline}</div>
         </div>
       </div>
     )

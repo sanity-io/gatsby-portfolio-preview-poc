@@ -17,9 +17,11 @@
     "dashboard-widget-structure-menu",
     "dashboard-widget-document-list",
     "dashboard-widget-netlify",
-    "sanity-plugin-url-metadata-input"
+    "sanity-plugin-url-metadata-input",
+    "asset-source-unsplash"
   ],
-  "parts": [{
+  "parts": [
+    {
       "name": "part:@sanity/base/schema",
       "path": "./schemas/schema.js"
     },
