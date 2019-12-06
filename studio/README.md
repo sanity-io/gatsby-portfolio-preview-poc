@@ -90,6 +90,9 @@ In addition to content being available in your dataset, you'll have to take cont
 
 This component does exactly the same as the iFrame preview, but in addition it let's you select a filter which optimizes the experience for users with various colorblind conditions.
 
+![Screenshot 2019-12-06 08 50 19](https://user-images.githubusercontent.com/134077/70305747-754b6580-1805-11ea-90bf-1b4601e80ac6.png)
+
+
 ### Text to Speech
 
 This component receives a `sampleProject` document and uses the browsers speech synthesizer to utter (read out loud) the text of various document fields. You can configure the target fields by setting the `fields` property, e.g.:
