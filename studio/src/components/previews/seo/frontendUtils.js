@@ -1,7 +1,7 @@
 export const websiteUrl = window.location.hostname === 'localhost' ? 'http://localhost:8000' : 'https://gatsby-portfolio-preview-poc-1812761745.gtsb.io'
 
-export function assemblePageUrl (route) {
-  return `${websiteUrl}/project/${route.slug.current}`
+export function assemblePageUrl ({slug = {}}) {
+  return `${websiteUrl}/project/${slug.current}`
 }
 
 const defaults = {nonTextBehavior: 'remove'}

@@ -41,7 +41,7 @@ class ColorblindPreview extends React.PureComponent {
   }
 
   render () {
-    const {displayed} = this.props.document
+    const {displayed, slug} = this.props.document
     if (!displayed) {
       return <div>there is no document to preview</div>
     }
@@ -53,7 +53,7 @@ class ColorblindPreview extends React.PureComponent {
 
     const url = assembleProjectUrl(displayed)
 
-    if (!url) {
+    if (!slug || !url) {
       return <div>Hmm. Having problems constructing the web front-end URL</div>
     }
 
