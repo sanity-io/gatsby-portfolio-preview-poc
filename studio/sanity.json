@@ -18,16 +18,16 @@
     "dashboard-widget-document-list",
     "dashboard-widget-netlify",
     "sanity-plugin-url-metadata-input",
-    "asset-source-unsplash"
+    "asset-source-unsplash",
+    "@sanity/vision"
   ],
-  "parts": [
-    {
+  "parts": [{
       "name": "part:@sanity/base/schema",
       "path": "./schemas/schema.js"
     },
     {
       "name": "part:@sanity/desk-tool/structure",
-      "path": "./src/deskStructure.js"
+      "path": "./src/deskStructure/index.js"
     },
     {
       "implements": "part:@sanity/dashboard/config",

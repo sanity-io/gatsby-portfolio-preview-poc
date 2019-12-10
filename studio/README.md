@@ -16,7 +16,6 @@ There are two ways of getting these previews running in a Studio:
 
 Make yourself familiar with how the previews are defined in [deskStructure.js](./src/deskStructure.js) and copy whichever preview components from [src/components/previews](./src/components/previews) which you find interesting to your own Studio. Then modify them to make them fit your own content.
 
-
 ## Structure definition
 
 For these previews to work, your Studio needs a structure definition. Locate a file named `deskStructure.js`. If there isn't one, follow [these instructions](https://www.sanity.io/docs/how-it-works) first. On the off-chance that there is a structure definition in your Studio, but it's named differently, check your `sanity.json` file for the implementation of `part:@sanity/desk-tool/structure`.
@@ -27,10 +26,7 @@ Now, instead of something like this in your `deskStructure.js` file:
 S.listItem()
   .title('Sample projects')
   .schemaType('sampleProject')
-  .child(
-    S.documentTypeList('sampleProject')
-      .title('Sample projects')
-  )
+  .child(S.documentTypeList('sampleProject').title('Sample projects'))
 ```
 
 ...you want to take a bit more control by calling `.views()`:
@@ -74,6 +70,7 @@ import IframePreview from './components/previews/iframe/IframePreview'
 For the iFrame and Colorblind previews to work, you need to put your web front end on the Gatsby Cloud. Sign up at https://www.gatsbyjs.com/preview/. If you got your Studio + front-end from sanity.io/create, give Gatsby your GitHub repo URL and make sure you set the base directory to `web`.
 
 Also, set these three environment variables:
+
 - `GATSBY_SANITY_PROJECT_ID` - The Sanity project ID
 - `GATSBY_SANITY_DATASET` - The name of your dataset
 - `SANITY_READ_TOKEN` - A token which will allow the Gatsby builder to fetch content. Visit [manage.sanity.io](https://manage.sanity.io) to generate such a token
@@ -92,21 +89,98 @@ This component does exactly the same as the iFrame preview, but in addition it l
 
 ![Screenshot 2019-12-06 08 50 19](https://user-images.githubusercontent.com/134077/70305747-754b6580-1805-11ea-90bf-1b4601e80ac6.png)
 
-
 ### Text to Speech
 
 This component receives a `sampleProject` document and uses the browsers speech synthesizer to utter (read out loud) the text of various document fields. You can configure the target fields by setting the `fields` property, e.g.:
 
 ```js
-S.view().component(({document}) => <TextToSpeechPreview document={document} fields={['title', 'description']} />)
+S.view().component(({document}) => (
+  <TextToSpeechPreview document={document} fields={['title', 'description']} />
+))
 ```
 
 Or you can take control of the `defaultFields` in `TextToSpeechPreview.js`. Also, the `speechOptions` in that same file can be fun to play around with :)
 
-<img width="1280" alt="Screenshot 2019-12-05 21 58 12" src="https://user-images.githubusercontent.com/134077/70274035-4a302a00-17a3-11ea-9a19-c74fd565dac4.png">
+![The text to speech preview](https://user-images.githubusercontent.com/134077/70274035-4a302a00-17a3-11ea-9a19-c74fd565dac4.png)
 
+### SEO summary
+
+This component receives a `route` document, resolves the `page` the `route` is pointing to and uses the content on that `page` to render:
+
+- A Twitter share card
+- A Facebook/Open Graph preview
+- A Google SERP preview
+
+Except for content being available in your dataset, no assembly is required to make this work.
+
+![Screenshot 2019-12-06 09 16 20](https://user-images.githubusercontent.com/134077/70307283-1daef900-1809-11ea-933c-d06df8921b40.png)
+
+### Banners
+
+Banners are ads shown in various contexts, like on billboards in New York and Osaka, and they use content from `ad` documents as the data source. In our examples, we have billboards in New York and Osaka, and each `ad` document has a different heading, tagline and background image that the preview component uses to show on the billboard.
+
+![Preview](https://github.com/sanity-io/next-landingpages-preview-poc/blob/master/.github/irl-preview-readme.gif?raw=true)
+
+How does this work? There are two components at play here, one is the component (`IrlPreview`) that handles all the logic for placing your ad (component) in the right position on a background image of your choosing. The other is the actual ad component that represents how your ad actually looks like. In our examples, we have one component using a background image from New York and another one from Osaka. Here is our New York component (`NewyorkPreview.js`):
+
+```
+import React from 'react'
+import IrlPreview from './IrlPreview'
+import NewyorkBanner from './NewyorkBanner'
+
+const nmatrix = [0.4537803868659941,0.054970678194849784,0,0.14983119474393147,-0.004189674182450833,0.22750620023381607,0,-0.09699401181274303,0,0,1,0,-0.00010425672320324794,-0.2516019261255319,0,1.0000005448288898]
+
+const NewyorkPreview = props => {
+  if (!props.document.displayed) {
+    return <div>No document to preview</div>
+  }
+  return (
+    <IrlPreview nmatrix={nmatrix} adHeight={200} adWidth={400} bgSrc="/static/newyork.png">
+      <NewyorkBanner document={props.document.displayed} />
+    </IrlPreview>
+  )
+}
+
+export default NewyorkPreview
+```
+
+You can see that there a few `props` at play here:
+
+- `bgSrc` - the background image that contains the billboard where your ad goes
+- `nmatrix` - an array with values representing where on the background your ad should initally be placed\*
+- `adHeight` - the approx. height of your ad in pixels
+- `adWidth` - the appprox. width of your ad in pixels
+
+\*As you move your ad around, new matrix values are printent out on the bottom of the preview pane for you to copy and paste to save the position of the ad.
+
+The `NewyorkBanner` component is the component representing the actual ad, which in HTML looks like this:
+
+```
+<div className={styles.banner}>
+  <img className={styles.backgroundImage} src={imageUrl}/>
+  <div className={styles.content}>
+    <div className={styles.heading}>{heading}</div>
+    <div className={styles.tagline}>{tagline}</div>
+  </div>
+</div>
+```
+
+This preview component is dependent on two packages: `react-moveable` and `resize-observer` and you need to install them as extra dependencies for it to work: `npm install --save react-moveable resize-observer`.
+
+### PDF Business Card
+
+This component receives a `person` document and provides a way to generate an image of what that person's business card might look like. There's also a download link to get a PDF version of that business card.
+
+For this to work you need (apart from content) a server which does the actual image/pdf generation. A GET request w/serialized content is performed to the backend, and the response contains image data.
+
+You can set up your own server(less) image/pdf generator by cloning this GitHub repo: https://github.com/sanity-io/json-to-pdf
+
+The `BusinessCard.js` file has a constant `cardServiceHost` which defines the URL to the server. Change it to make requests go to your own server.
+
+Except for content being available in your dataset, you need to install an extra dependency: `npm install --save rxjs`.
+
+![Screenshot 2019-12-06 09 15 51](https://user-images.githubusercontent.com/134077/70307324-2ef80580-1809-11ea-9ccb-6188e643caa3.png)
 
 ## Cool! Do you have any other examples?
 
 Actually yes! Check this Studio out https://github.com/sanity-io/next-landingpages-preview-poc!
-
