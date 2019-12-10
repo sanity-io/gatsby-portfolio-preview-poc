@@ -1,3 +1,13 @@
+# Gatsby Portfolio Studio with sample previews
+
+This is a Sample Studio which showcases a few interesting ways to preview your content. The Studio itself is based off the [Portfolio with Gatsby](https://www.sanity.io/create/?template=sanity-io%2Fsanity-template-gatsby-portfolio) template.
+
+👉 [Read our blog post about previews](https://www.sanity.io/blog/evolve-authoring-experiences-with-views-and-split-panes).
+
+👉 [Learn more about the example previews in the Studio’s Readme.md](https://github.com/sanity-io/gatsby-portfolio-preview-poc/blob/master/studio/README.md).
+
+---
+
 # gatsby-portfolio-preview-poc
 
 A portfolio using structured content and a static site builder.
