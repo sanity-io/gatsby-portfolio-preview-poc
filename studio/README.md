@@ -105,6 +105,18 @@ Or you can take control of the `defaultFields` in `TextToSpeechPreview.js`. Also
 
 ![The text to speech preview](https://user-images.githubusercontent.com/134077/70274035-4a302a00-17a3-11ea-9a19-c74fd565dac4.png)
 
+### Braille
+
+This component gives a visual representation of 6-point Braille script. Hence it's only useful to introduce sighted people to Braille. In order to use it in your own studio, make sure to install the dependency from npm.
+
+```sh
+npm i braillle
+# or
+yarn add braille
+```
+
+![Braille preview in Sanity Studio](https://cdn.sanity.io/images/3do82whm/next/bad25006e1f0e747a1edffa958fceb8f687e55af-1913x833.png?w=1000&h=1000&fit=max)
+
 ### SEO summary
 
 This component receives a `route` document, resolves the `page` the `route` is pointing to and uses the content on that `page` to render:
