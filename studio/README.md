@@ -105,6 +105,18 @@ Or you can take control of the `defaultFields` in `TextToSpeechPreview.js`. Also
 
 ![The text to speech preview](https://user-images.githubusercontent.com/134077/70274035-4a302a00-17a3-11ea-9a19-c74fd565dac4.png)
 
+### Braille
+
+This component gives a visual representation of 6-point Braille script. Hence it's only useful to introduce sighted people to Braille. In order to use it in your own studio, make sure to install the dependency from npm.
+
+```sh
+npm i braillle
+# or
+yarn add braille
+```
+
+![Braille preview in Sanity Studio](https://cdn.sanity.io/images/3do82whm/next/bad25006e1f0e747a1edffa958fceb8f687e55af-1913x833.png?w=1000&h=1000&fit=max)
+
 ### SEO summary
 
 This component receives a `route` document, resolves the `page` the `route` is pointing to and uses the content on that `page` to render:
@@ -121,7 +133,7 @@ Except for content being available in your dataset, no assembly is required to m
 
 Banners are ads shown in various contexts, like on billboards in New York and Osaka, and they use content from `ad` documents as the data source. In our examples, we have billboards in New York and Osaka, and each `ad` document has a different heading, tagline and background image that the preview component uses to show on the billboard.
 
-![Preview](https://github.com/sanity-io/next-landingpages-preview-poc/blob/master/.github/irl-preview-readme.gif?raw=true)
+![Preview](https://cdn.sanity.io/images/3do82whm/next/1b33361e5716caf8936d8079dac091e0c7b43d98-1425x767.gif)
 
 How does this work? There are two components at play here, one is the component (`IrlPreview`) that handles all the logic for placing your ad (component) in the right position on a background image of your choosing. The other is the actual ad component that represents how your ad actually looks like. In our examples, we have one component using a background image from New York and another one from Osaka. Here is our New York component (`NewyorkPreview.js`):
 
