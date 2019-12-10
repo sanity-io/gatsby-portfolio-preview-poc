@@ -840,9 +840,9 @@
     rxjs "^6.1.0"
     scroll "^2.0.0"
 
-"@sanity/components@^0.147.0":
-  version "0.147.0"
-  resolved "https://registry.npmjs.org/@sanity/components/-/components-0.147.0.tgz#5450deda5e9a42fdb77c0df35c771392481beff3"
+"@sanity/components@^0.147.2":
+  version "0.147.2"
+  resolved "https://registry.npmjs.org/@sanity/components/-/components-0.147.2.tgz#c657e942b48bf1821f5d29bbb9086477e6b4c01a"
   dependencies:
     "@sanity/date-input" "0.147.0"
     "@sanity/imagetool" "0.147.0"
@@ -871,16 +871,16 @@
     rxjs "^6.5.3"
     string-hash "^1.1.3"
 
-"@sanity/core@^0.147.0":
-  version "0.147.0"
-  resolved "https://registry.npmjs.org/@sanity/core/-/core-0.147.0.tgz#c990623ca055c163790e198ddf615d191b45a227"
+"@sanity/core@^0.147.2":
+  version "0.147.2"
+  resolved "https://registry.npmjs.org/@sanity/core/-/core-0.147.2.tgz#f461e5062405d539b7a1f0d5a6523ec9e4081655"
   dependencies:
     "@babel/plugin-proposal-class-properties" "^7.7.4"
     "@babel/preset-env" "^7.7.4"
     "@babel/preset-react" "^7.7.4"
     "@babel/register" "^7.7.4"
     "@sanity/check" "0.147.0"
-    "@sanity/export" "0.147.0"
+    "@sanity/export" "0.147.2"
     "@sanity/generate-help-url" "0.147.0"
     "@sanity/import" "0.147.0"
     "@sanity/mutator" "0.147.0"
@@ -968,9 +968,9 @@
     "@sanity/generate-help-url" "0.147.0"
     "@sanity/rich-date-input" "0.147.0"
 
-"@sanity/default-layout@^0.147.0":
-  version "0.147.0"
-  resolved "https://registry.npmjs.org/@sanity/default-layout/-/default-layout-0.147.0.tgz#9468d412380156732a0a768d56380b8afdc7fc2e"
+"@sanity/default-layout@^0.147.2":
+  version "0.147.2"
+  resolved "https://registry.npmjs.org/@sanity/default-layout/-/default-layout-0.147.2.tgz#41483e7ac27bd37ee156dcc767dd5c765997aaa9"
   dependencies:
     "@sanity/generate-help-url" "0.147.0"
     is-hotkey "^0.1.4"
@@ -989,12 +989,12 @@
     prop-types "^15.6.0"
     rxjs "^6.5.3"
 
-"@sanity/desk-tool@^0.147.1":
-  version "0.147.1"
-  resolved "https://registry.npmjs.org/@sanity/desk-tool/-/desk-tool-0.147.1.tgz#1e099dc9997a7a23f00a1e9b436fdbfebdbbbdc3"
+"@sanity/desk-tool@^0.147.2":
+  version "0.147.2"
+  resolved "https://registry.npmjs.org/@sanity/desk-tool/-/desk-tool-0.147.2.tgz#da5e57b9e20d35d9cd1bdbcfb403856d1b90cea2"
   dependencies:
     "@sanity/data-aspects" "0.147.0"
-    "@sanity/form-builder" "0.147.1"
+    "@sanity/form-builder" "0.147.2"
     "@sanity/generate-help-url" "0.147.0"
     "@sanity/mutator" "0.147.0"
     "@sanity/schema" "0.147.0"
@@ -1051,9 +1051,9 @@
     eventsource "^1.0.6"
     eventsource-polyfill "^0.9.6"
 
-"@sanity/export@0.147.0":
-  version "0.147.0"
-  resolved "https://registry.npmjs.org/@sanity/export/-/export-0.147.0.tgz#1db5e74a6d00ec0713ae95f5db7fd8cc3e980399"
+"@sanity/export@0.147.2":
+  version "0.147.2"
+  resolved "https://registry.npmjs.org/@sanity/export/-/export-0.147.2.tgz#34c2cfda0fb22e1bd4913944737bade6d4eb008c"
   dependencies:
     archiver "^2.1.1"
     debug "^3.1.0"
@@ -1064,9 +1064,9 @@
     simple-get "^3.0.2"
     split2 "^2.1.1"
 
-"@sanity/form-builder@0.147.1":
-  version "0.147.1"
-  resolved "https://registry.npmjs.org/@sanity/form-builder/-/form-builder-0.147.1.tgz#a0424fca741262328cec97ec5ed96540860db598"
+"@sanity/form-builder@0.147.2":
+  version "0.147.2"
+  resolved "https://registry.npmjs.org/@sanity/form-builder/-/form-builder-0.147.2.tgz#37e3b77c35fc961cbdb923c300eac7aa568898ca"
   dependencies:
     "@sanity/block-tools" "0.147.0"
     "@sanity/generate-help-url" "0.147.0"
@@ -1399,9 +1399,9 @@
     es6-error "^4.0.2"
     type-of-is "^3.5.1"
 
-"@sanity/vision@^0.147.0":
-  version "0.147.0"
-  resolved "https://registry.npmjs.org/@sanity/vision/-/vision-0.147.0.tgz#351fccaead5726c40b6c44196adb3e030b58ef56"
+"@sanity/vision@^0.147.2":
+  version "0.147.2"
+  resolved "https://registry.npmjs.org/@sanity/vision/-/vision-0.147.2.tgz#5c25b05eca9981a3cf3d58e5e8de6fa59ff582ba"
   dependencies:
     classnames "^2.2.5"
     codemirror "^5.47.0"
