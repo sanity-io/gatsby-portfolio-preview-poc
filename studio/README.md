@@ -4,6 +4,20 @@ This is a Sample Studio which showcases a few interesting ways to preview your c
 
 [Read our blog post about previews](https://www.sanity.io/blog/evolve-authoring-experiences-with-views-and-split-panes).
 
+- [Try it out](#try-it-out)
+  - [Automatic](#automatic)
+  - [Manual](#manual)
+- [Structure definition](#structure-definition)
+- [Preview components and usage](#preview-components-and-usage)
+  - [Wiring up Gatsby Preview](#wiring-up-gatsby-preview)
+  - [Web preview with iFrame](#web-preview-with-iframe)
+  - [Preview for people with colorblindness](#preview-for-people-with-colorblindness)
+  - [Text to Speech preview](#text-to-speech-preview)
+  - [Visual braille preview](#visual-braille-preview)
+  - [SEO and social preview](#seo-and-social-preview)
+  - [IRL preview](#irl-preview)
+  - [PDF Business Card](#pdf-business-card)
+
 ## Try it out
 
 There are two ways of getting these previews running in a Studio:
@@ -77,7 +91,7 @@ Also, set these three environment variables:
 - `GATSBY_SANITY_DATASET` - The name of your dataset
 - `SANITY_READ_TOKEN` - A token which will allow the Gatsby builder to fetch content. Visit [manage.sanity.io](https://manage.sanity.io) to generate such a token
 
-### iFrame preview of live site
+### Web preview with iFrame
 
 This component receives a `sampleProject` document, resolves the URL to the web front-end and renders an iFrame of that page inside the Studio.
 
@@ -85,19 +99,20 @@ In addition to content being available in your dataset, you'll have to take cont
 
 <img width="1281" alt="Screenshot 2019-12-05 21 53 42" src="https://user-images.githubusercontent.com/134077/70273965-2967d480-17a3-11ea-819d-2adb7d3801a6.png">
 
-### Colorblind preview of live site
+### Preview for people with colorblindness
 
 This component does exactly the same as the iFrame preview, but in addition it let's you select a filter which optimizes the experience for users with various colorblind conditions.
 
 ![Screenshot 2019-12-06 08 50 19](https://user-images.githubusercontent.com/134077/70305747-754b6580-1805-11ea-90bf-1b4601e80ac6.png)
 
-### Text to Speech
+### Text to Speech preview
 
-This component receives a `sampleProject` document and uses the browsers speech synthesizer to utter (read out loud) the text of various document fields. You can configure the target fields by setting the `fields` property, e.g.:
+This component receives a `sampleProject` document and uses the browsers speech synthesizer to utter (read out loud) the text of various document fields. You can configure the target fields by setting the `fields` in the options method (that will be available under `props.options.fields` in the React component), e.g.:
 
 ```js
-S.view().component(({document}) => (
-  <TextToSpeechPreview document={document} fields={['title', 'description']} />
+S.view().component(TextToSpeechPreview)
+  .options({fields: ['title', 'description']})
+  .title('Text2Speech')
 ))
 ```
 
@@ -105,7 +120,7 @@ Or you can take control of the `defaultFields` in `TextToSpeechPreview.js`. Also
 
 ![The text to speech preview](https://user-images.githubusercontent.com/134077/70274035-4a302a00-17a3-11ea-9a19-c74fd565dac4.png)
 
-### Braille
+### Visual braille preview
 
 This component gives a visual representation of 6-point Braille script. Hence it's only useful to introduce sighted people to Braille. In order to use it in your own studio, make sure to install the dependency from npm.
 
@@ -117,7 +132,7 @@ yarn add braille
 
 ![Braille preview in Sanity Studio](https://cdn.sanity.io/images/3do82whm/next/bad25006e1f0e747a1edffa958fceb8f687e55af-1913x833.png?w=1000&h=1000&fit=max)
 
-### SEO summary
+### SEO and social preview
 
 This component receives a `route` document, resolves the `page` the `route` is pointing to and uses the content on that `page` to render:
 
@@ -129,9 +144,9 @@ Except for content being available in your dataset, no assembly is required to m
 
 ![Screenshot 2019-12-06 09 16 20](https://user-images.githubusercontent.com/134077/70307283-1daef900-1809-11ea-933c-d06df8921b40.png)
 
-### Banners
+### IRL preview
 
-Banners are ads shown in various contexts, like on billboards in New York and Osaka, and they use content from `ad` documents as the data source. In our examples, we have billboards in New York and Osaka, and each `ad` document has a different heading, tagline and background image that the preview component uses to show on the billboard.
+IRL previews are in this example ads shown in various contexts, like on billboards in New York and Osaka, or a magazine, and they use content from `ad` documents as the data source. In our examples, we have billboards in New York and Osaka, and each `ad` document has a different heading, tagline and background image that the preview component uses to show on the billboard.
 
 ![Preview](https://cdn.sanity.io/images/3do82whm/next/1b33361e5716caf8936d8079dac091e0c7b43d98-1425x767.gif)
 

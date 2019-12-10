@@ -46,6 +46,7 @@ export default S.listItem()
               .title('Colorblind'),
             S.view
               .component(TextToSpeechPreview)
+              .options({fields: ['title', 'excerpt', 'body']})
               .icon(MdAccessibility)
               .title('Text to speech'),
             S.view

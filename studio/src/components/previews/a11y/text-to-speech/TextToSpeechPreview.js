@@ -30,7 +30,9 @@ const blocksToText = (blocks, opts = {}) => {
 class TextToSpeechPreview extends React.Component {
   static propTypes = {
     document: PropTypes.object,
-    fields: PropTypes.array
+    options: PropTypes.shape({
+      fields: PropTypes.array
+    })
   }
 
   static defaultProps = {
@@ -44,7 +46,7 @@ class TextToSpeechPreview extends React.Component {
 
   // Only offer to speak fields which have any data
   fieldsAvailableForUtterance = () => {
-    const {fields} = this.props
+    const {fields} = this.props.options
     const {displayed} = this.props.document
     return (fields || defaultFields).filter(field => !!displayed[field])
   }
