@@ -3,10 +3,14 @@ import React from 'react'
 import PropTypes from 'prop-types'
 import styles from './IframePreview.css'
 
-const gatsbyUrl = window.location.hostname === 'localhost' ? 'http://localhost:8000' : 'https://gatsby-portfolio-preview-poc-4165823465.gtsb.io'
-
-export const assembleProjectUrl = doc => {
-  return `${gatsbyUrl}/project/${doc.slug.current}`
+const assembleProjectUrl = ({displayed, options}) => {
+  const {slug} = displayed
+  const {previewURL} = options
+  if (!slug || !previewURL) {
+    console.warn('Missing slug or previewURL', {slug, previewURL})
+    return ''
+  }
+  return `${previewURL}/project/${slug.current}`
 }
 
 class IframePreview extends React.PureComponent {
@@ -19,15 +23,20 @@ class IframePreview extends React.PureComponent {
   }
 
   render () {
+    const {options} = this.props
     const {displayed} = this.props.document
     if (!displayed) {
-      return <div>there is no document to preview</div>
+      return (<div className={styles.componentWrapper}>
+        <p>There is no document to preview</p>
+      </div>)
     }
 
-    const url = assembleProjectUrl(displayed)
+    const url = assembleProjectUrl({displayed, options})
 
     if (!url) {
-      return <div>Hmm. Having problems constructing the web front-end URL</div>
+      return (<div className={styles.componentWrapper}>
+        <p>Hmm. Having problems constructing the web front-end URL.</p>
+      </div>)
     }
 
     return (

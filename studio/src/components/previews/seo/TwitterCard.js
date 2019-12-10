@@ -13,9 +13,9 @@ const urlFor = source => {
 }
 
 const author = {
-  name: 'Integrated Systems',
-  handle: 'intsys',
-  image: '/static/integrated_systems.png'
+  name: 'Sanity.io',
+  handle: 'sanity_io',
+  image: 'https://pbs.twimg.com/profile_images/1135907399582199809/7uZ5d2to_400x400.jpg'
 }
 
 class TwitterCard extends React.PureComponent {
@@ -31,10 +31,10 @@ class TwitterCard extends React.PureComponent {
   }
 
   render () {
-    const {document, route, width} = this.props
+    const {document, width, options} = this.props
     const {title, excerpt, mainImage} = document
-    const url = assemblePageUrl(route)
-    const websiteUrlWithoutProtocol = websiteUrl.split('://')[1]
+    const url = assemblePageUrl({document, options})
+    const websiteUrlWithoutProtocol = url.split('://')[1]
     return (
       <div className={styles.seoItem}>
         <h3>Twitter card preview</h3>

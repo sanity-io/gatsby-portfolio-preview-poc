@@ -17,13 +17,14 @@ class SeoPreviews extends React.PureComponent {
   }
 
   render () {
+    const {options} = this.props
     const {displayed} = this.props.document
 
     return (
       <>
-        <TwitterCard document={displayed} route={displayed} />
-        <FacebookShare document={displayed} />
-        <GoogleSearchResult document={displayed} route={displayed} />
+        <GoogleSearchResult document={displayed} options={options} />
+        <TwitterCard document={displayed} options={options} />
+        <FacebookShare document={displayed} options={options} />
       </>
     )
   }

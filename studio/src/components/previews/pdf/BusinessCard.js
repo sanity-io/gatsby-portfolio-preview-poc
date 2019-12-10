@@ -1,16 +1,20 @@
 /* eslint-disable react/no-unused-prop-types, react/no-multi-comp, react/no-did-mount-set-state, react/forbid-prop-types */
 import React from 'react'
 import PropTypes from 'prop-types'
+
+// remember to install these dependencies
 import {of} from 'rxjs'
 import {map, switchMap, throttleTime} from 'rxjs/operators'
+import imageUrlBuilder from '@sanity/image-url'
+
+// the dependencies below are already present in the studio
 import Spinner from 'part:@sanity/components/loading/spinner'
 import sanityClient from 'part:@sanity/base/client'
-import imageUrlBuilder from '@sanity/image-url'
 import styles from './BusinessCard.css'
 
 const fileType = 'png'
 const cardServiceHost = 'https://json-to-pdf.sanity-io.now.sh'
-//const cardServiceHost = 'http://localhost:3000'
+// const cardServiceHost = 'http://localhost:3000'
 const cardServiceBaseUrl = `${cardServiceHost}/api/business-card`
 
 const builder = imageUrlBuilder(sanityClient)
@@ -40,17 +44,17 @@ class BusinessCard extends React.PureComponent {
     error: null
   }
 
-  componentDidMount() {
+  componentDidMount () {
     this.fetchData()
   }
 
-  componentWillUnmount() {
+  componentWillUnmount () {
     if (this.fetchSubscription) {
       this.fetchSubscription.unsubscribe()
     }
   }
 
-  componentDidUpdate(prevProps) {
+  componentDidUpdate (prevProps) {
     const oldDoc = JSON.stringify(prevProps.document.displayed)
     const currentDoc = JSON.stringify(this.props.document.displayed)
     if (oldDoc !== currentDoc) {
@@ -108,7 +112,7 @@ class BusinessCard extends React.PureComponent {
     }))
   }
 
-  render() {
+  render () {
     const {displayed} = this.props.document
     const {businessCardImage, cardServiceUrls, isFlipped, error} = this.state
     const {name} = displayed
@@ -122,7 +126,7 @@ class BusinessCard extends React.PureComponent {
       )
     }
     if (!businessCardImage) {
-      return <Spinner center message="Fetching business card" />
+      return <Spinner center message='Fetching business card' />
     }
 
     return (

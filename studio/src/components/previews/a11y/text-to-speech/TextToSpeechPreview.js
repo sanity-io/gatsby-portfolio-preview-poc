@@ -49,7 +49,7 @@ class TextToSpeechPreview extends React.Component {
     return (fields || defaultFields).filter(field => !!displayed[field])
   }
 
-  textToSpeak() {
+  textToSpeak () {
     const {activeField} = this.state
     const {displayed} = this.props.document
 
@@ -83,18 +83,18 @@ class TextToSpeechPreview extends React.Component {
     this.setState({activeField: this.fieldsAvailableForUtterance()[0]})
   }
 
-  componentDidUpdate() {
+  componentDidUpdate () {
     if (speechSynth.speaking) {
       this.handleStopSpeaking()
       this.handleStartSpeaking()
     }
   }
 
-  componentWillUnmount() {
+  componentWillUnmount () {
     this.handleStopSpeaking()
   }
 
-  render() {
+  render () {
     if (!speechSynth) {
       return (
         <div className={styles.wrapper}>

@@ -18,9 +18,9 @@ class GoogleSearchResult extends React.PureComponent {
   }
 
   render () {
-    const {document, route, width} = this.props
+    const {document, options, width} = this.props
     const {title, excerpt, mainImage: openGraphImage} = document
-    const url = assemblePageUrl(route)
+    const url = assemblePageUrl({document, options})
 
     return (
       <div className={styles.seoItem}>

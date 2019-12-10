@@ -2,15 +2,15 @@ import React from 'react'
 import IrlPreview from './IrlPreview'
 import NewyorkBanner from './NewyorkBanner'
 
-const nmatrix = [0.4537803868659941,0.054970678194849784,0,0.14983119474393147,-0.004189674182450833,0.22750620023381607,0,-0.09699401181274303,0,0,1,0,-0.00010425672320324794,-0.2516019261255319,0,1.0000005448288898]
+const nmatrix = [0.2162859941465178, -0.010347087937701097, 0, -0.025618315956140374, -0.0020753476507044243, 0.557358985595646, 0, -0.2893248420055018, 0, 0, 1, 0, -0.2099979052341303, 0.0021023151699736853, 0, 1.0000001429799565]
 
-const NewyorkPreview = props => {
-  if (!props.document.displayed) {
+const NewyorkPreview = ({document}) => {
+  if (!document.displayed) {
     return <div>No document to preview</div>
   }
   return (
-    <IrlPreview nmatrix={nmatrix} adHeight={200} adWidth={400} bgSrc="/static/newyork.png">
-      <NewyorkBanner document={props.document.displayed} />
+    <IrlPreview nmatrix={nmatrix} adHeight={170} adWidth={100} bgSrc='/static/new_york.png'>
+      <NewyorkBanner document={document.displayed} />
     </IrlPreview>
   )
 }

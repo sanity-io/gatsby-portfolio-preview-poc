@@ -17,10 +17,14 @@ const FILTER_ITEMS = [
   {title: 'No filter', value: null}
 ]
 
-const gatsbyUrl = window.location.hostname === 'localhost' ? 'http://localhost:8000' : 'https://gatsby-portfolio-preview-poc-4165823465.gtsb.io'
-
-export const assembleProjectUrl = doc => {
-  return `${gatsbyUrl}/project/${doc.slug.current}`
+const assembleProjectUrl = ({displayed, options}) => {
+  const {slug} = displayed
+  const {previewURL} = options
+  if (!slug || !previewURL) {
+    console.warn('Missing slug or previewURL', {slug, previewURL})
+    return ''
+  }
+  return `${previewURL}/project/${slug.current}`
 }
 
 class ColorblindPreview extends React.PureComponent {
@@ -41,9 +45,12 @@ class ColorblindPreview extends React.PureComponent {
   }
 
   render () {
+    const {options} = this.props
     const {displayed} = this.props.document
     if (!displayed) {
-      return <div>there is no document to preview</div>
+      return (<div className={styles.componentWrapper}>
+        <p>There is no document to preview</p>
+      </div>)
     }
 
     const {activeFilter} = this.state
@@ -51,10 +58,12 @@ class ColorblindPreview extends React.PureComponent {
       filter: activeFilter.value ? `url('${filters}#${activeFilter.value}')` : 'none'
     }
 
-    const url = assembleProjectUrl(displayed)
+    const url = assembleProjectUrl({displayed, options})
 
     if (!url) {
-      return <div>Hmm. Having problems constructing the web front-end URL</div>
+      return (<div className={styles.componentWrapper}>
+        <p>Hmm. Having problems constructing the web front-end URL.</p>
+      </div>)
     }
 
     return (

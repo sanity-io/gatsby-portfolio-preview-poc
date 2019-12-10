@@ -132,7 +132,7 @@ class IrlPreview extends React.PureComponent {
 
     const adTarget = this.adWrapper.current
 
-    const hasSize = width > 0 && height > 0
+    // const hasSize = width > 0 && height > 0
     // TODO: Show loading-indicator before we have size?
 
     // Convert to pixel-space.
@@ -197,11 +197,10 @@ class IrlPreview extends React.PureComponent {
             </div>
           </div>
         </div>
-        {/* Commented out for marketing purposes */}
-        {/* <div>
-          <p>To save the position you have warped the ad into, replace the current <code>nmatrix</code> array in your preview component with this new <code>nmatrix</code> array:</p>
+        <div>
+          <p>To save the position you have warped the ad into, replace the current <code>nmatrsanitix</code> array in your preview component with this new <code>nmatrix</code> array:</p>
           <pre className={styles.nmatrix}>nmatrix = {JSON.stringify(nmatrix)}</pre>
-        </div> */}
+        </div>
       </div>
     )
   }

@@ -1,3 +1,7 @@
+.componentWrapper p {
+  padding: 1em;
+}
+
 .iframeContainer iframe {
   border: 0;
   height: 100%;

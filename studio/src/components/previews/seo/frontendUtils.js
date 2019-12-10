@@ -1,7 +1,11 @@
-export const websiteUrl = window.location.hostname === 'localhost' ? 'http://localhost:8000' : 'https://gatsby-portfolio-preview-poc-1812761745.gtsb.io'
-
-export function assemblePageUrl ({slug = {}}) {
-  return `${websiteUrl}/project/${slug.current}`
+export const assemblePageUrl = ({document, options}) => {
+  const {slug} = document
+  const {previewURL} = options
+  if (!slug || !previewURL) {
+    console.warn('Missing slug or previewURL', {slug, previewURL})
+    return ''
+  }
+  return `${previewURL}/project/${slug.current}`
 }
 
 const defaults = {nonTextBehavior: 'remove'}

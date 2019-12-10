@@ -6,6 +6,10 @@
   height: 100%;
 }
 
+.componentWrapper p {
+  padding: 1em;
+}
+
 .filterDropdown {
   padding: 0 1rem;
   margin-bottom: 1rem;
