@@ -2,6 +2,8 @@
 
 This is a Sample Studio which showcases a few interesting ways to preview your content. The Studio itself is based off the [Portfolio with Gatsby](https://www.sanity.io/create/?template=sanity-io%2Fsanity-template-gatsby-portfolio) template.
 
+[Read our blog post about previews](https://www.sanity.io/blog/evolve-authoring-experiences-with-views-and-split-panes).
+
 ## Try it out
 
 There are two ways of getting these previews running in a Studio:
@@ -180,7 +182,3 @@ The `BusinessCard.js` file has a constant `cardServiceHost` which defines the UR
 Except for content being available in your dataset, you need to install an extra dependency: `npm install --save rxjs`.
 
 ![Screenshot 2019-12-06 09 15 51](https://user-images.githubusercontent.com/134077/70307324-2ef80580-1809-11ea-9ccb-6188e643caa3.png)
-
-## Cool! Do you have any other examples?
-
-Actually yes! Check this Studio out https://github.com/sanity-io/next-landingpages-preview-poc!
