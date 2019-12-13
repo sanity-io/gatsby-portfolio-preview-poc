@@ -26,7 +26,7 @@ There are two ways of getting these previews running in a Studio:
 
 1. Clone this Studio
 2. Change `projectId` and `dataset` in the `sanity.json` file to match a project you already own. If you want a new project to play with, get one by running `sanity init`.
-3. **Optional**: For easy testing, add sample content. There's some included in this repo, just type `sanity dataset import sample-data/production.tar.gz preview-test` in your terminal to get a new dataset tanked up. Remember to update your `sanity.json` file with the new dataset name (`preview-test` in this case).
+3. **Optional**: For easy testing, add sample content. There's some included in this repo, just type `sanity dataset import ../sample-data/production.tar.gz preview-test` in your terminal to get a new dataset tanked up. Remember to update your `sanity.json` file with the new dataset name (`preview-test` in this case).
 
 ### Manual
 
