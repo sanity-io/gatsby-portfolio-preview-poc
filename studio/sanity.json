@@ -19,9 +19,11 @@
     "dashboard-widget-netlify",
     "sanity-plugin-url-metadata-input",
     "asset-source-unsplash",
-    "@sanity/vision"
+    "@sanity/vision",
+    "@sanity/color-input"
   ],
-  "parts": [{
+  "parts": [
+    {
       "name": "part:@sanity/base/schema",
       "path": "./schemas/schema.js"
     },
